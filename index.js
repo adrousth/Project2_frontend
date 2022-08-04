@@ -27,7 +27,7 @@ loginButton.addEventListener('click', async (e) => {
             window.location.href="./admin.html"
         }
         else if (sessionStorage.getItem("role") == ('warranty_manager')) {
-            window.location.href="./warranty_manager.html"
+            window.location.href="./warranty-manager.html"
         }
     } else if (res.status != 200) {
         let err = await res.json();

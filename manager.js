@@ -99,8 +99,8 @@ function addWarrantiesToTable(war_obj) {
 
         let warID = document.createElement('td');
         warID.innerHTML = war.warrantyId
-        let deviceType = document.createElement('td');
-        deviceType.innerHTML = war.deviceType
+        let deviceID = document.createElement('td');
+        deviceID.innerHTML = war.deviceType
         let warIssDate = document.createElement('td');
         warIssDate.innerHTML = war.warrantyIssueDate;
         let warExpDate = document.createElement('td');
@@ -119,7 +119,7 @@ function addWarrantiesToTable(war_obj) {
         warRes.innerHTML = war.warrantyResolver;
 
         row.appendChild(warID);
-        row.appendChild(deviceType);
+        row.appendChild(deviceID);
         row.appendChild(warIssDate);
         row.appendChild(warExpDate);
         row.appendChild(warAmnt);
@@ -133,8 +133,8 @@ function addWarrantiesToTable(war_obj) {
     }
 };
 
-addWarrantyButton.addEventListener('click', async (e) => {
+addReimbursementButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
 
-    window.location.href="./add-request.html"});
+    window.location.href="./add-reimb.html"});
