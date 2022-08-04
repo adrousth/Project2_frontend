@@ -5,6 +5,7 @@ let username = sessionStorage.getItem('username');
 // let dropdownButton = document.getElementById('dropdown-btn');
 // let selectedStatus = document.querySelector('#status-select');
 let refreshButton = document.getElementById('refresh-table-btn');
+let changeStatusButton = document.getElementById('update-warranty-btn');
 // console.log(selectedStatus)
 // console.log(dropdownButton)
 
@@ -102,15 +103,46 @@ function addWarrantiesToTable(war_obj) {
         let deviceID = document.createElement('td');
         deviceID.innerHTML = war.deviceType
         let warIssDate = document.createElement('td');
-        warIssDate.innerHTML = war.warrantyIssueDate;
+        warIssDate.innerHTML = new Date(war.warrantyIssueDate).toDateString();
         let warExpDate = document.createElement('td');
-        warExpDate.innerHTML = war.warrantyExpirationDate;
+        warExpDate.innerHTML = new Date(war.warrantyExpirationDate).toDateString();
         let warAmnt = document.createElement('td');
         warAmnt.innerHTML = war.warrantyAmount;
         let reqIssDate = document.createElement('td');
-        reqIssDate.innerHTML = war.requestIssueDate;
+        reqIssDate.innerHTML = new Date(war.requestIssueDate).toDateString();
         let recallStatus = document.createElement('td');
-        recallStatus.innerHTML = war.recallStatus;
+        let requestStatus = document.createElement('td');
+        if (war.recallStatus == 'pending') {
+            
+            let statusSelect = document.createElement('select')
+            statusSelect.name = 'status'
+            statusSelect.class = 'status'
+            statusSelect.id = war.warrantyId
+            
+            let statusOptionPending = document.createElement('option')
+            statusOptionPending.innerHTML = 'pending'
+            statusOptionPending.value = 'pending'
+            
+            statusSelect.appendChild(statusOptionPending)
+            let statusOptionApproved = document.createElement('option')
+            statusOptionApproved.innerHTML = 'approved'
+            statusOptionApproved.value = 'approved'
+            
+            statusSelect.appendChild(statusOptionApproved)
+            let statusOptionDenied = document.createElement('option')
+            statusOptionDenied.innerHTML = 'denied'
+            statusOptionDenied.value = 'denied'
+            
+            statusSelect.appendChild(statusOptionDenied)
+            recallStatus.appendChild(statusSelect.cloneNode(true));
+        } else if (war.recallStatus == 'approved') {
+            recallStatus.innerHTML = war.recallStatus;
+            recallStatus.style.color = "green"
+        } else if (war.recallStatus == 'denied') {
+            recallStatus.innerHTML = war.recallStatus;
+            recallStatus.style.color = "red"
+        } 
+        
         let confStatus = document.createElement('td');
         confStatus.innerHTML = war.confirmation;
         let warReq = document.createElement('td');
@@ -133,8 +165,31 @@ function addWarrantiesToTable(war_obj) {
     }
 };
 
-addReimbursementButton.addEventListener('click', async (e) => {
-    e.preventDefault();
+changeStatusButton.addEventListener('click', () => {
+    let selectElements = document.getElementsByName('status')
+    let requestsToChange = {}
+    for (element of selectElements) {   
+      if (element.options[element.selectedIndex].value != "pending") {
+        requestsToChange[element.id] = element.options[element.selectedIndex].value
+      }
+    }
+    console.log(requestsToChange)
+    fetch('http://127.0.0.1:8080/warranty', {
+        'method': 'put',
+        'credentials': 'include',
+        'headers': {
+            'Content-Type': 'application/json' 
+        },
+        'body': JSON.stringify(requestsToChange)
+      }).then((res) => {
+        console.log(res)
+        if (res.status == 201) {
+          res.json().then((data) => {
+            requests = data.requests
+            console.log(requests)
+            displayRequests(requests, 'all')
+          })
+      }
+        
+  })})
 
-
-    window.location.href="./add-reimb.html"});

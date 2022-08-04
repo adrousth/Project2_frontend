@@ -102,13 +102,13 @@ function addWarrantiesToTable(war_obj) {
         let deviceType = document.createElement('td');
         deviceType.innerHTML = war.deviceType
         let warIssDate = document.createElement('td');
-        warIssDate.innerHTML = war.warrantyIssueDate;
+        warIssDate.innerHTML = new Date(war.warrantyIssueDate).toDateString();
         let warExpDate = document.createElement('td');
-        warExpDate.innerHTML = war.warrantyExpirationDate;
+        warExpDate.innerHTML = new Date(war.warrantyExpirationDate).toDateString();
         let warAmnt = document.createElement('td');
         warAmnt.innerHTML = war.warrantyAmount;
         let reqIssDate = document.createElement('td');
-        reqIssDate.innerHTML = war.requestIssueDate;
+        reqIssDate.innerHTML = new Date(war.requestIssueDate).toDateString();
         let recallStatus = document.createElement('td');
         recallStatus.innerHTML = war.recallStatus;
         let confStatus = document.createElement('td');
