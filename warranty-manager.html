@@ -4,16 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warranty Manager Page</title>
+    <title>Manager Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <script defer src="./manager.js"></script>
 </head>
 <body>
-    <h1>Welcome Manager</h1>
-    <div>
-        <p>
-            <label for="logout-btn">Logout Button</label>
-            <button>Logout</button>
-        </p>
-    </div>
     
+    <div>
+        <h1 class="request-table"><strong>Warranty Request Table</strong></h1>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Warranty ID</th>
+                    <th scope="col">Device ID</th>
+                    <th scope="col">Warranty Issue Date</th>
+                    <th scope="col">Warranty Expiration Date</th>
+                    <th scope="col">Warranty Amount</th>
+                    <th scope="col">Request Issue Date</th>
+                    <th scope="col">Recall Status</th>
+                    <th scope="col">Confirmation Status</th>
+                    <th scope="col">Warranty Requester</th>
+                    <th scope="col">Warranty Resolver</th>
+                </tr>
+            </thead>
+            <tbody id="request-table-body">
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <label for="logout"></label>
+        <button id="logout-button">Logout</button>
+        <label for="Add-Reimbursement"></label>
+        <button id="update-warranty-btn">Update Warranty Request</button>
+        <label for="refresh-table"></label>
+        <button id="refresh-table-btn">Refresh Warranty Request Table</button>
+    </div>
 </body>
 </html>
