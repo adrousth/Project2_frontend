@@ -46,7 +46,7 @@ addButton.addEventListener('click', async (e) => {
         } else {
             let err = await res.json();
             console.log("Not 201");
-            alert(err.message);
+            alert(err);
         }
         
         // let data = await res.json();
