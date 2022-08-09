@@ -95,7 +95,7 @@ logoutButton.addEventListener('click', async (e) => {
 
 function addWarrantiesToTable(war_obj) {
     console.log(typeof(war_obj))
-    
+    warrantyTbodyElement.innerHTML = ""
       for (war of war_obj) {  
         row = addRowToTable(war)
         warrantyTbodyElement.appendChild(row);
@@ -118,7 +118,6 @@ function addRowToTable(war) {
     let reqIssDate = document.createElement('td');
     reqIssDate.innerHTML = new Date(war.requestIssueDate).toDateString();
     let recallStatus = document.createElement('td');
-    let requestStatus = document.createElement('td');
     if (war.recallStatus == 'pending') {
         
         let statusSelect = document.createElement('select')
@@ -173,13 +172,17 @@ function addRowToTable(war) {
 changeStatusButton.addEventListener('click', () => {
     let selectElements = document.getElementsByName('status')
     let requestsToChange = {}
+    let tableRow
     for (element of selectElements) {   
       if (element.options[element.selectedIndex].value != "pending") {
         requestsToChange[element.id] = element.options[element.selectedIndex].value
-        let tableRow = document.getElementById("war" + element.id);
-        tableRow.innerHTML = ""
+        // tableRow = document.getElementById("war" + element.id);
+        // tableRow.remove()
+        // tableRow.innerHTML = ""
+        // tableRow.removeAttribute('id')
       }
     }
+    
     console.log(requestsToChange)
     fetch('http://127.0.0.1:8080/warranty', {
         'method': 'put',
