@@ -30,9 +30,7 @@ loginButton.addEventListener('click', async (e) => {
             window.location.href="./warranty-manager.html"
         }
     } else if (res.status != 200) {
-        let err = await res.json();
-        console.log(err);
-        alert(err.message);
+        alert("Invalid username and/or password");
     }
     } catch(err) {
         alert(err) 

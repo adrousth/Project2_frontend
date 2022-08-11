@@ -5,6 +5,7 @@ let username = sessionStorage.getItem('username');
 // let dropdownButton = document.getElementById('dropdown-btn');
 // let selectedStatus = document.querySelector('#status-select');
 let refreshButton = document.getElementById('refresh-table-btn');
+let welcome = document.getElementById('welcome');
 // console.log(selectedStatus)
 // console.log(dropdownButton)
 
@@ -16,6 +17,7 @@ let refreshButton = document.getElementById('refresh-table-btn');
 
 
 document.addEventListener('DOMContentLoaded', async (e) => {
+    welcome.innerHTML= `Welcome ${username}`
 
     console.log("Hello There")
     try {
