@@ -1,11 +1,12 @@
 let usernameInput = document.getElementById('username-input');
 let passwordInput = document.getElementById('password-input');
 let loginButton = document.getElementById('login-button');
+const url = "ec2-18-223-161-66.us-east-2.compute.amazonaws.com";
 
 loginButton.addEventListener('click', async (e) => {
     e.preventDefault()
     try {
-    let res = await fetch('http://127.0.0.1:8080/login', {
+    let res = await fetch(`http://${url}:8080/login`, {
         credentials: 'include',
         method: 'POST',
         body: JSON.stringify({

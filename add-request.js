@@ -4,6 +4,7 @@ let issDate = document.getElementById('war-issue-date');
 let deviceType = document.getElementById('device-select');
 let username = sessionStorage.getItem('username');
 let expDate = document.getElementById('war-exp-date');
+const url = "ec2-18-223-161-66.us-east-2.compute.amazonaws.com"
 // let receiptConfirmButton = document.getElementById('receipt-confirm-button');
 
 // receiptConfirmButton.addEventListener('click', () =. {
@@ -29,7 +30,7 @@ addButton.addEventListener('click', async (e) => {
     // formData.append("author", username)
     // console.log(...formData);
     try {
-        let res = await fetch(`http://127.0.0.1:8080/warranty`, {
+        let res = await fetch(`http://${url}:8080/warranty`, {
             'credentials': 'include',
             'method': 'POST',
             

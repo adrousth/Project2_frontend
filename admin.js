@@ -6,6 +6,7 @@ let username = sessionStorage.getItem('username');
 // let selectedStatus = document.querySelector('#status-select');
 let refreshButton = document.getElementById('refresh-table-btn');
 let welcome = document.getElementById('welcome');
+const url = "ec2-18-223-161-66.us-east-2.compute.amazonaws.com";
 // console.log(selectedStatus)
 // console.log(dropdownButton)
 
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
     console.log("Hello There")
     try {
-        let res = await fetch(`http://127.0.0.1:8080/warranties`, {
+        let res = await fetch(`http://${url}:8080/warranties`, {
         'credentials': 'include',
         'method': 'GET',
         'headers': {
