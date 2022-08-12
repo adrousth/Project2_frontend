@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
 logoutButton.addEventListener('click', async (e) => {
     e.preventDefault()
-    let res = await fetch('http://127.0.0.1:8080/logout', {
+    let res = await fetch(`http://${url}:8080/logout`, {
         
         'credentials': 'include',
         'method': 'POST',
@@ -185,7 +185,7 @@ changeStatusButton.addEventListener('click', () => {
     }
     
     console.log(requestsToChange)
-    fetch('http://127.0.0.1:8080/warranty', {
+    fetch(`http://${url}:8080/warranty`, {
         'method': 'put',
         'credentials': 'include',
         'headers': {
